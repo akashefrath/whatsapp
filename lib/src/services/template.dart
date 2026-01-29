@@ -19,26 +19,25 @@ class TemplateService {
       'Authorization': 'Bearer $accessToken',
     };
 
-    final Map<String, dynamic> body = {
+      final Map<String, dynamic> body = {
       'messaging_product': 'whatsapp',
       'to': phoneNumber,
       'type': 'template',
       'template': {
         'name': template,
         'language': {'code': language},
-        'components': []
+        'components': placeholder,
       },
     };
 
-    if (placeholder != null && placeholder.isNotEmpty) {
-      body['template']['components'] = [
-        {
-          'type': 'body',
-          'parameters': placeholder,
-        }
-      ];
-    }
-
+    // if (placeholder != null && placeholder.isNotEmpty) {
+    //   body['template']['components'] = [
+    //     {
+    //       'type': 'body',
+    //       'parameters': placeholder,
+    //     }
+    //   ];
+    // }
     var url = '$fromNumberId/messages';
     try {
       final http.Response response =
